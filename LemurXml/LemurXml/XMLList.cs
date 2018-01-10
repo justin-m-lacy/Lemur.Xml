@@ -6,7 +6,7 @@ using System.Text;
 namespace Lemur.Xml {
 
 	/**
-	 * Note: careful adding/removing nodes while traversing an XMLList.
+	 * WARNING:  Adding/removing nodes while traversing an XMLList may cause errors.
 	 **/
 
 	public class XMLList {
@@ -14,6 +14,9 @@ namespace Lemur.Xml {
 		private XMLNode _first;
 		private XMLNode _last;
 
+		/// <summary>
+		/// First XmlNode in the list.
+		/// </summary>
 		public XMLNode First {
 
 			get {

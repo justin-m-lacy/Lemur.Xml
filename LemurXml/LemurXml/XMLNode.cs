@@ -7,8 +7,17 @@ namespace Lemur.Xml {
 
 	public class XMLNode {
 
-		public XMLNode Next;
-		public XMLNode Prev;
+		/// <summary>
+		/// Next Xml sibling.
+		/// </summary>
+		public XMLNode Next { get => next; set => next = value; }
+		private XMLNode next;
+
+		/// <summary>
+		/// Previous Xml sibling.
+		/// </summary>
+		public XMLNode Prev { get => prev; set => prev = value; }
+		private XMLNode prev;
 
 		private XMLList _children;
 		public XMLList children {
@@ -17,7 +26,9 @@ namespace Lemur.Xml {
 			}
 		}
 
-		private string _nodeText;
+		/// <summary>
+		/// Text contained as node content.
+		/// </summary>
 		public string NodeText {
 			get {
 				return this._nodeText;
@@ -27,11 +38,14 @@ namespace Lemur.Xml {
 				this.IsTextNode = true;
 			}
 		}
+		private string _nodeText;
 
 		private bool _isTextNode;
-		/**
-		 * text nodes have no children.
-		 */
+
+		/// <summary>
+		/// Returns true if the node is a text node. Text nodes do not
+		/// have any child nodes.
+		/// </summary>
 		public bool IsTextNode {
 			get {
 				return this._isTextNode;
@@ -41,6 +55,9 @@ namespace Lemur.Xml {
 			}
 		}
 
+		/// <summary>
+		/// Attributes stored in this xml node.
+		/// </summary>
 		private Dictionary< String, String > _attributes;
 
 		public string GetAttribute( string attr ) {
