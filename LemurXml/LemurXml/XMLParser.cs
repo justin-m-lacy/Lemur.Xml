@@ -100,14 +100,12 @@ namespace Lemur.Xml {
 				// assume the node is text. attempt to parse text.
 				this.curIndex = saveIndex;
 				if ( !this.ReadNodeText( node ) ) {
-					Debug.Log( "error reading node text" );
 					return null;
 				}
 
 			} //
 
 			if ( !ReadEndTag( node ) ) {
-				Debug.Log( "error reading end tag: " + node.NodeName);
 				return null;
 			}
 
@@ -121,14 +119,12 @@ namespace Lemur.Xml {
 		private bool ReadStartTag( XMLNode node, ref bool closedTag ) {
 
 			if ( !MatchChar( START_NODE ) ) {
-				Debug.Log( "error reading start tag" );
 				this.error = true;
 				return false;
 			}
 
 			string nodeName = this.ReadIdentifier();
 			if ( this.error || nodeName == String.Empty ) {
-				Debug.Log( "error reading node name" );
 				return false;
 			}
 			node.NodeName = nodeName;
@@ -143,7 +139,6 @@ namespace Lemur.Xml {
 
 				if ( !this.ReadAttribute( node ) ) {
 					this.error = true;
-					Debug.Log( "error reading attribute: " + node.NodeName );
 					return false;
 				}
 
@@ -161,7 +156,7 @@ namespace Lemur.Xml {
 					return true;
 
 				}
-				Debug.Log( "error reading final end />: " + node.NodeName );
+				
 
 			} else if ( next == END_NODE ) {
 
@@ -169,8 +164,7 @@ namespace Lemur.Xml {
 				return true;
 
 			}
-
-			Debug.Log( "error ending node: " + node.NodeName );
+			
 
 			return false;
 
